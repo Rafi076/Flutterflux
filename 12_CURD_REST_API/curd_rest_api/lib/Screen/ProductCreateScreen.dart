@@ -1,3 +1,4 @@
+import 'package:curd_rest_api/Style/Style.dart';
 import 'package:flutter/material.dart';
 
 class ProductCreateScreen extends StatefulWidget {
@@ -33,22 +34,38 @@ class _ProductcreatescreenState extends State<ProductCreateScreen> {
       drawer: Drawer(),
        body: Stack(
         children: [
+          // Background Graphics
+          ScreenBackground(context),
           Container(
             child: SingleChildScrollView(
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
-                  TextFormField(onChanged: (value){}),
-                  SizedBox.fromSize(),
-                  TextFormField(onChanged: (value){}),
-                  SizedBox.fromSize(),
-                  TextFormField(onChanged: (value){}),
-                  SizedBox.fromSize(),
-                  TextFormField(onChanged: (value){}),
-                  SizedBox.fromSize(),
-                  TextFormField(onChanged: (value){}),
-                  SizedBox.fromSize(),
-                ],
+                  TextFormField(
+                    decoration: AppInputDecoration('Product Name'),
+                      onChanged: (value){}
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                      decoration: AppInputDecoration('Product Code'),
+                      onChanged: (value){}
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                      decoration: AppInputDecoration('Product Image'),
+                      onChanged: (value){}
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                      decoration: AppInputDecoration('Product Unit Price'),
+                      onChanged: (value){}
+                  ),
+                  const SizedBox(height: 20),
+                  TextFormField(
+                      decoration: AppInputDecoration('Product Total Price'),
+                      onChanged: (value){}
+                  ),
+                  const SizedBox(height: 20),                ],
               ),
             ),
           )
