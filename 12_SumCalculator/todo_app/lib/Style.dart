@@ -10,7 +10,7 @@ InputDecoration FieldDecoration(String label) {
 }
 
 TextStyle HeadTextStyle(){
-  return TextStyle(
+  return const TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
@@ -19,8 +19,8 @@ TextStyle HeadTextStyle(){
 
 ButtonStyle AppButton (){
   return ElevatedButton.styleFrom(
-    padding: EdgeInsets.all(20),
+    padding: const EdgeInsets.all(20),
     backgroundColor: Colors.blue,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
+    shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(4))),
   );
 }

@@ -50,7 +50,7 @@ class _HomeSumState extends State<HomeSum> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Calculator'),
+        title: const Text('Calculator..'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(40),
@@ -73,7 +73,7 @@ class _HomeSumState extends State<HomeSum> {
               style: HeadTextStyle(),
             ),
             const SizedBox(height: 20), // Add some space before the button
-            Container(
+            SizedBox(
               width: double.infinity,
               child: ElevatedButton(
 

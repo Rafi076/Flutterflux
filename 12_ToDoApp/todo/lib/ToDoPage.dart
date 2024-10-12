@@ -50,14 +50,14 @@ class _ToDoPageState extends State<ToDoPage> {
             Row(
               children: [
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: TextFormField(
                     controller: _taskController,
                     decoration: const InputDecoration(hintText: 'Enter task'),
                   ),
                 ),
                 Expanded(
-                  flex: 1,
+                  flex: 0,
                   child: ElevatedButton(
                     onPressed: _addTask, // Call the function to add a task
                     child: const Text('ADD'),
@@ -73,7 +73,8 @@ class _ToDoPageState extends State<ToDoPage> {
                 itemBuilder: (context, index) {
                   return Card(
                     child: ListTile(
-                      title: Text(ToDoList[index]), // Display the task
+                      title: Text(ToDoList[index]),
+                      // Display the task
                     ),
                   );
                 },

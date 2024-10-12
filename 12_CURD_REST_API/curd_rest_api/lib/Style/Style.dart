@@ -8,7 +8,7 @@ const colorDarkBlue = Colors.blue;
 
 ScreenBackground(context) {
   return SvgPicture.asset(
-    'assets/images/back-svg.jpg',
+    'assets/images/',
     alignment: Alignment.center,
     width: MediaQuery.of(context).size.width,
     height: MediaQuery.of(context).size.height,
@@ -32,3 +32,67 @@ InputDecoration AppInputDecoration(label) {
     labelText: label,
   );
 }
+
+
+
+DecoratedBox AppDropDownStyle(child){
+  return DecoratedBox(
+    decoration: BoxDecoration(
+      color : colorWhite,
+    border: Border.all(color: colorWhite,width: 1),
+    borderRadius: BorderRadius.circular(4),
+    ),
+  child: Padding(
+    padding: EdgeInsets.only(left: 30, right: 30),
+      child: child,
+  ),
+  );
+}
+
+
+/// submit button
+ButtonStyle AppButtonStyle(){
+  return ElevatedButton.styleFrom(
+    elevation: 1,
+    padding: EdgeInsets.all(0),
+    backgroundColor: Colors.transparent,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6))
+  );
+}
+
+
+
+/// ink is a decorative container using for submit child
+Ink SucessButtonChild(ButtonText){
+  return Ink(
+    decoration: BoxDecoration(
+      color: colorGreen,
+      borderRadius: BorderRadius.circular(6),
+    ),
+    child: Container(
+      height: 45,
+      alignment: Alignment.center,
+      child: Text(ButtonText, style: TextStyle(fontWeight: FontWeight.w400, fontSize: 15),),
+    ),
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
