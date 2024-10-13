@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   http: ^1.2.2 # added this --> http: ^1.2.2
   flutter_svg: ^2.0.10+1  # added svg --> flutter_svg: ^2.0.10+1
+  fluttertoast: ^8.2.8  # for flutter tost msg
 
 dev_dependencies:
   flutter_test:
