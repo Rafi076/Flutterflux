@@ -1,6 +1,8 @@
 import 'package:curd_rest_api/Style/Style.dart';
 import 'package:flutter/material.dart';
 
+import '../RestAPI/RectClient.dart';
+
 class ProductCreateScreen extends StatefulWidget {
   @override
   State<ProductCreateScreen> createState() => _ProductcreatescreenState();
@@ -15,6 +17,7 @@ class _ProductcreatescreenState extends State<ProductCreateScreen> {
     "UnitPrice": " ",
     "TotalPrice": " "
   };
+  bool Loading = false;
 
   // to using 6 input field we used 6 time call a{OnPressed} function which can be Expensive. instead of this we will use InputOnChange()
   InputOnChange(Mapkey, TextValue) {
@@ -24,7 +27,7 @@ class _ProductcreatescreenState extends State<ProductCreateScreen> {
   }
 
 
-  FormOnSubmit(){
+  FormOnSubmit() async {
     if(FromValues['ProductName']!.length == 0){
       ErrorToast('Product Name Required');
     }
@@ -44,7 +47,14 @@ class _ProductcreatescreenState extends State<ProductCreateScreen> {
       ErrorToast('Total Price Required');
     }
     else{
+      setState(() {
+        Loading = true;
+      });
       // data rest Apt ...
+       await ProductCreateRequest(FromValues);
+      setState(() {
+        Loading = false;
+      });
     }
   }
 
@@ -78,7 +88,7 @@ class _ProductcreatescreenState extends State<ProductCreateScreen> {
           // Background Graphics
           ScreenBackground(context),
           Container(
-            child: SingleChildScrollView(
+            child:Loading?(Center(child: CircularProgressIndicator(),)) : SingleChildScrollView(
               padding: EdgeInsets.all(20),
               child: Column(
                 children: [
