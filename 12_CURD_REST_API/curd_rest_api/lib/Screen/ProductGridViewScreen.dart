@@ -32,6 +32,30 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
     });
   }
 
+  DeleteItem(id) async {
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Delete"),
+            content: Text("Once Delete, You Cant get it Back"),
+            actions: [
+              OutlinedButton(
+                  onPressed: (){},
+                  child: Text("YES")
+              ),
+              OutlinedButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: Text("NO")
+              ),
+            ],
+          );
+         }
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +95,31 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch, // stretch will fit each grid in X-Y Axis
                               children: [
-                                Expanded(child: Image.network(ProductList[index]['img'],fit: BoxFit.fill,))
+                                Expanded(child: Image.network(ProductList[index]['img'],fit: BoxFit.fill,)),
+                                Container(
+                                  padding: EdgeInsets.fromLTRB(5, 5, 5, 8),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(ProductList[index]['ProductName']),
+                                      SizedBox(height: 7),
+                                      Text("Price: "+ProductList[index]['unitPrice']+" BDT"),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+                                          OutlinedButton(onPressed: (){
+
+                                          }, child: Icon(CupertinoIcons.ellipsis_vertical_circle, size: 18,color: colorGreen,)),
+                                          SizedBox(width: 4,),
+                                          OutlinedButton(onPressed: (){
+                                            DeleteItem(ProductList[index]['-id']);
+                                          },
+                                              child: Icon(CupertinoIcons.delete, size: 18,color: colorGreen,))
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
 
                             ),
