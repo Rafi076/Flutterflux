@@ -1,3 +1,4 @@
+import 'package:curd_rest_api/Screen/ProductGridViewScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,6 +7,19 @@ const colorRed = Colors.red;
 const colorGreen = Colors.green;
 const colorWhite = Colors.white;
 const colorDarkBlue = Colors.blue;
+
+
+SliverGridDelegateWithFixedCrossAxisCount ProductGridViewStyle(){
+  return SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: 2, // for how many column of grid will create
+    mainAxisSpacing: 2,
+    mainAxisExtent: 250, // for grid height
+
+  );
+}
+
+
+
 
 
 void ErrorToast(msg){
