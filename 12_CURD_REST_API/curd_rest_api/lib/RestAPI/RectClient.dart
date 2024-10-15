@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 
 Future <List>ProductGridViewListRequest() async {
-  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/UpdateProduct/");
+  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/ReadProduct");
   var PostHeader = {"Content-Type":"application/json"};
   var response = await http.get(URL,headers: PostHeader,);
 
@@ -47,7 +47,7 @@ Future<bool>ProductCreateRequest(FromValues) async {
 
 
 Future<bool> ProductDeleteRequest(id) async{
-  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/CreateProduct"+id);
+  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/DeleteProduct/"+id);
   var PostHeader = {"Content-Type":"application/json"};
 
   var response = await http.get(URL, headers: PostHeader);
@@ -63,4 +63,26 @@ Future<bool> ProductDeleteRequest(id) async{
   }
 
 
+}
+
+
+
+Future<bool>ProductUpdateRequest(FromValues,id) async {
+  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/UpdateProduct/"+id);
+  var PostBody = json.encode(FromValues);
+  var PostHeader = {"Content-Type":"application/json"};
+
+  var response = await http.post(URL,headers: PostHeader, body: PostBody);
+
+  var ResultCode = response.statusCode;
+  var ResultBody = json.decode(response.body);
+
+  if(ResultCode == 200 && ResultBody['status']=="success"){
+    SucessToast("Result Success");
+    return true;
+  }
+  else {
+    ErrorToast("Request Fail! Try Again");
+    return false;
+  }
 }

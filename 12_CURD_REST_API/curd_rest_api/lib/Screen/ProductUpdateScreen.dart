@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import '../RestAPI/RectClient.dart';
 
 class Productupdatescreen extends StatefulWidget {
-  const Productupdatescreen({super.key});
+  final Map productItem;
+  const Productupdatescreen(this.productItem);
 
   @override
   State<Productupdatescreen> createState() => _ProductupdatescreenState();
@@ -22,6 +23,19 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
     "TotalPrice": " "
   };
   bool Loading = false;
+
+  @override
+  void initState(){
+    setState(() {
+      FromValues.update("ProductName", (value) => "TextValue");
+      FromValues.update("ProductCode", (value) => "ProductCode");
+      FromValues.update("Img", (value) => "Img");
+      FromValues.update("Qty", (value) => "Qty");
+      FromValues.update("UnitPrice", (value) => "UnitPrice");
+      FromValues.update("TotalPrice", (value) => "TotalPrice");
+
+    });
+  }
 
   // to using 6 input field we used 6 time call a{OnPressed} function which can be Expensive. instead of this we will use InputOnChange()
   InputOnChange(Mapkey, TextValue) {
@@ -73,7 +87,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
         backgroundColor: Colors.blue, // Set app bar color to blue
         centerTitle: true, // Center the title
         title: const Text(
-          "Create Update",
+          "Update Product",
           style: TextStyle(
             color: Colors.black, // Set text color to black
             fontWeight: FontWeight.bold, // Set text to bold
@@ -101,6 +115,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
               child: Column(
                 children: [
                   TextFormField(
+                    initialValue: FromValues['ProductName'],
                     decoration: AppInputDecoration('Product Name:'),
                     onChanged: (Textvalue) {
                       InputOnChange("ProductName", Textvalue);
@@ -108,6 +123,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    initialValue: FromValues['ProductCode'],
                     decoration: AppInputDecoration('Product Code:'),
                     onChanged: (Textvalue) {
                       InputOnChange("ProductCode", Textvalue);
@@ -115,6 +131,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    initialValue: FromValues['Img'],
                     decoration: AppInputDecoration('Product Image:'),
                     onChanged: (Textvalue) {
                       InputOnChange("Img", Textvalue);
@@ -122,6 +139,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    initialValue: FromValues['UnitPrice'],
                     decoration: AppInputDecoration('Product Unit Price:'),
                     onChanged: (Textvalue) {
                       InputOnChange("UnitPrice", Textvalue);
@@ -129,6 +147,7 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    initialValue: FromValues['TotalPrice'],
                     decoration: AppInputDecoration('Product Total Price:'),
                     onChanged: (Textvalue) {
                       InputOnChange("TotalPrice", Textvalue);

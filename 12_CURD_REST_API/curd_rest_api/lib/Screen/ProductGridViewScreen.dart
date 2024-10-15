@@ -1,8 +1,10 @@
+import 'package:curd_rest_api/Screen/ProductCreateScreen.dart';
 import 'package:curd_rest_api/Style/Style.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../RestAPI/RectClient.dart';
+import 'ProductUpdateScreen.dart';
 
 
 class ProductGridViewScreen extends StatefulWidget {
@@ -15,7 +17,7 @@ class ProductGridViewScreen extends StatefulWidget {
 class _ProductGridViewScreen extends State<ProductGridViewScreen> {
 
   List ProductList = [];
-  bool Loading = true;
+  bool Loading = true; // true
 
   @override
   void initState(){
@@ -24,7 +26,7 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
   }
 
   CallDate() async {
-    Loading = true;
+    Loading = true; // true
     var data = await ProductGridViewListRequest();
     setState(() {
       ProductList = data;
@@ -58,6 +60,16 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
             ],
           );
          }
+    );
+  }
+
+
+  GotoUpdate(context,productItem){
+    Navigator.push(context,
+        MaterialPageRoute(
+            builder: (builder) =>
+                Productupdatescreen(productItem)
+        )
     );
   }
 
@@ -114,6 +126,7 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
                                           OutlinedButton(onPressed: (){
+                                            GotoUpdate(context, ProductList[index]);
 
                                           }, child: Icon(CupertinoIcons.ellipsis_vertical_circle, size: 18,color: colorGreen,)),
                                           SizedBox(width: 4,),
@@ -139,6 +152,15 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
 
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context,
+              MaterialPageRoute(
+                  builder: (builder) =>
+                  ProductCreateScreen())
+          );
+        },
+        child: Icon(Icons.add),),
 
     );
 
