@@ -60,25 +60,27 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
         children: [
           ScreenBackground(context),
           Container(
-            child: Loading?(Center(child: CircularProgressIndicator())):(
+            child: Loading?(Center(child: CircularProgressIndicator())): RefreshIndicator(
+                onRefresh: () async {
+                  await CallDate();
+                },
+                child: GridView.builder(
+                        gridDelegate: ProductGridViewStyle(),
+                        itemBuilder: (context, index){
+                          return Card( // card for each grid
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch, // stretch will fit each grid in X-Y Axis
+                              children: [
+                                Expanded(child: Image.network(ProductList[index]['img'],fit: BoxFit.fill,))
+                              ],
 
-            GridView.builder(
-                gridDelegate: ProductGridViewStyle(),
-                itemBuilder: (context, index){
-                  return Card( // card for each grid
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch, // stretch will fit each grid in X-Y Axis
-                      children: [
-                        Expanded(child: Image.network(ProductList[index]['img'],fit: BoxFit.fill,))
-                      ],
-                      
+                            ),
+
+                          );
+
+                        }
                     ),
-
-                  );
-
-                }
-            )
-            ),
+                )
           )
 
         ],
