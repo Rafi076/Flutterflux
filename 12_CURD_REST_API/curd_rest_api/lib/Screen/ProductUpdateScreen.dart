@@ -1,3 +1,4 @@
+import 'package:curd_rest_api/Screen/ProductGridViewScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:curd_rest_api/Style/Style.dart';
 import 'package:flutter/material.dart';
@@ -70,10 +71,14 @@ class _ProductupdatescreenState extends State<Productupdatescreen> {
         Loading = true;
       });
       // data rest Apt ...
-      ///await ProductCreateRequest(FromValues);
-      setState(() {
-        Loading = false;
-      });
+      await ProductUpdateRequest(FromValues, widget.productItem['_id']);
+
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context)=> ProductGridViewScreen()),
+          (Route route) => false
+      );
+
     }
   }
 
