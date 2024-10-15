@@ -95,6 +95,7 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
                 },
                 child: GridView.builder(
                         gridDelegate: ProductGridViewStyle(),
+                        itemCount: ProductList.length,
                         itemBuilder: (context, index){
                           return Card( // card for each grid
                             child: Column(
@@ -108,7 +109,7 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
                                     children: [
                                       Text(ProductList[index]['ProductName']),
                                       SizedBox(height: 7),
-                                      Text("Price: "+ProductList[index]['unitPrice']+" BDT"),
+                                      Text("Price: "+ProductList[index]['UnitPrice']+" BDT"),
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.end,
                                         children: [
@@ -119,7 +120,7 @@ class _ProductGridViewScreen extends State<ProductGridViewScreen> {
                                           OutlinedButton(onPressed: (){
                                             DeleteItem(ProductList[index]['-id']);
                                           },
-                                              child: Icon(CupertinoIcons.delete, size: 18,color: colorGreen,))
+                                              child: Icon(CupertinoIcons.delete, size: 18,color: colorRed,))
                                         ],
                                       )
                                     ],

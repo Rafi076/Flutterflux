@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 
 Future <List>ProductGridViewListRequest() async {
-  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/UpdateProduct/65abe919f68794d36c5b7ffa");
+  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/UpdateProduct/");
   var PostHeader = {"Content-Type":"application/json"};
   var response = await http.get(URL,headers: PostHeader,);
 
@@ -47,7 +47,7 @@ Future<bool>ProductCreateRequest(FromValues) async {
 
 
 Future<bool> ProductDeleteRequest(id) async{
-  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/DeleteProduct"+id);
+  var URL = Uri.parse("http://152.42.163.176:2008/api/v1/CreateProduct"+id);
   var PostHeader = {"Content-Type":"application/json"};
 
   var response = await http.get(URL, headers: PostHeader);
