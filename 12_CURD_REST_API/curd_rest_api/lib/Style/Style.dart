@@ -110,7 +110,7 @@ ButtonStyle AppButtonStyle(){
 
 
 
-/// ink is a decorative container using for submit child
+/// ink is a decorative container using for submit child..
 Ink SucessButtonChild(ButtonText){
   return Ink(
     decoration: BoxDecoration(
