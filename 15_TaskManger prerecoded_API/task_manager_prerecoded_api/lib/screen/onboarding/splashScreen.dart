@@ -13,7 +13,7 @@ class _splashScreenState extends State<splashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Text("Splash")
+          child: Text("Splash..")
       ),
     );
   }
