@@ -23,18 +23,18 @@ class _setPasswordScreenState extends State<setPasswordScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Get Start With", style: Head1Text(colorDarkBlue),),
+                Text("Set Password", style: Head1Text(colorDarkBlue),),
                 const SizedBox(height: 1,),
-                Text("Learn With Rafi", style: Head6Text(colorLightGray),),
+                Text("Minimum length Password 8 character with Latter & Number combination", style: Head6Text(colorLightGray),),
                 const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Email Address "),),
+                TextFormField(decoration: AppInputDecoration("Password"),),
                 const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Password "),),
+                TextFormField(decoration: AppInputDecoration("Confirm Password "),),
                 const SizedBox(height: 20,),
                 Container(child: ElevatedButton(
                     style: AppButtonStyle(),
                     onPressed: (){},
-                    child: SuccessButtonChild('Login')),)
+                    child: SuccessButtonChild('Confirm')),)
 
               ],
             ),

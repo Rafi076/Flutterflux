@@ -27,7 +27,7 @@ import 'package:fluttertoast/fluttertoast.dart';
   TextStyle Head6Text(textColor){
     return TextStyle(
       color: textColor,
-      fontSize: 28,
+      fontSize: 16,
       fontFamily: 'poppins',
       fontWeight: FontWeight.w400,
     );
