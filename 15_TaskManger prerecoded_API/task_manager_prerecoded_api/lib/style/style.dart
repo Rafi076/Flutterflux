@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
   const colorRed = Colors.red;
   const colorDark = Colors.black;
@@ -12,6 +13,23 @@ import 'package:fluttertoast/fluttertoast.dart';
   const colorLightGray = Colors.grey;
   const colorLight = Colors.white70;
 
+
+ // dependenci : pin_code_fields: ^8.0.1
+PinTheme AppOTPStyle(){
+  return  PinTheme(
+    inactiveColor: colorLight,
+    inactiveFillColor: colorWhite,
+    selectedColor: colorGreen,
+    activeColor: colorWhite,
+    selectedFillColor: colorGreen,
+    shape: PinCodeFieldShape.underline,
+    borderRadius: BorderRadius.circular(5),
+    fieldHeight: 50,
+    borderWidth: 0.5,
+    fieldWidth: 45,
+    activeFillColor: Colors.white,
+  );
+}
 
 
 // poppins-Regular font need tobe download
@@ -32,6 +50,9 @@ import 'package:fluttertoast/fluttertoast.dart';
       fontWeight: FontWeight.w400,
     );
   }
+
+
+
 
   InputDecoration AppInputDecoration(lable){
     return InputDecoration(
