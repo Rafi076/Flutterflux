@@ -14,7 +14,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 
 
-
+// poppins-Regular font need tobe download
   TextStyle Head1Text(textColor){
     return TextStyle(
       color: textColor,
@@ -58,15 +58,17 @@ import 'package:fluttertoast/fluttertoast.dart';
     );
   }
 
-  SvgPicture ScreenBackGround(context){
-    return SvgPicture.asset(
-      'assets/images/back.svg',
-      alignment: Alignment.center,
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      fit: BoxFit.cover,
-        );
-  }
+
+// dependeci :   flutter_svg: ^2.0.10+1
+SvgPicture ScreenBackground(context){
+  return SvgPicture.asset(
+    'assets/images/back.svg',
+    alignment: Alignment.center,
+    width: MediaQuery.of(context).size.width,
+    height: MediaQuery.of(context).size.height,
+    fit: BoxFit.cover,
+  );
+}
 
 
 
@@ -99,6 +101,8 @@ import 'package:fluttertoast/fluttertoast.dart';
     );
   }
 
+
+  // dependeci :   fluttertoast: ^8.2.8
   void SuccessToast(msg){
     Fluttertoast.showToast(
         msg: msg,
@@ -110,8 +114,6 @@ import 'package:fluttertoast/fluttertoast.dart';
         fontSize: 16.0
     );
   }
-
-
   void ErrorToast(msg){
     Fluttertoast.showToast(
         msg: msg,
