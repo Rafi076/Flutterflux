@@ -1,15 +1,17 @@
+
+
 import 'package:flutter/cupertino.dart';
 
-class completeTaskListScreen extends StatefulWidget {
-  const completeTaskListScreen({super.key});
+class completedTaskListScreen extends StatefulWidget {
+  const completedTaskListScreen({super.key});
 
   @override
-  State<completeTaskListScreen> createState() => _completeTaskListScreenState();
+  State<completedTaskListScreen> createState() => _completedTaskListScreenState();
 }
 
-class _completeTaskListScreenState extends State<completeTaskListScreen> {
+class _completedTaskListScreenState extends State<completedTaskListScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Placeholder();
   }
 }
