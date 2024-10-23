@@ -1,0 +1,81 @@
+To integrate a REST API with Flutter, it's important to understand how APIs work and why tools like Postman are used during the development and testing process.
+
+What is an API?
+==> API (Application Programming Interface) allows two applications to communicate with each other.
+==> REST API follows a stateless communication protocol (typically HTTP) where you can perform CRUD operations (Create, Read, Update, Delete) on a server.
+
+CRUD Operations Example in Your Product App:
+1. Create: Add a product (name, price, unit price, quantity, image link).
+2. Read: Fetch the list of all products (displayed on the product list screen).
+3. Update: Modify product details (e.g., price or quantity).
+4. Delete: Remove a product from the list.
+
+
+Why Postman is Used?
+Postman is a popular tool used for API testing and debugging. Here's why developers rely on it:
+
+1. Testing Endpoints Independently: Before coding in Flutter, you can verify if the API works correctly.
+2. Saves Time: Quickly test your API requests and ensure the backend logic is working without building the entire UI.
+3. Easy Debugging: If the API call fails, Postman provides detailed error responses (like status codes and headers).
+4. Generate Requests: You can test different HTTP methods—POST, GET, PUT, DELETE—before integrating them into your app.
+5. Automate: Helps simulate scenarios like invalid data inputs or missing fields to ensure robustness.
+
+Your Use Case:
+
+
+1. Add Product Screen (POST request):
+In this screen, you'll send a POST request with product details like:
+
+json
+Copy code
+{
+  "name": "Product A",
+  "price": 100,
+  "unit_price": 10,
+  "quantity": 10,
+  "image_link": "http://example.com/image.jpg"
+}
+Postman helps you test this request to ensure the product is added correctly on the server.
+
+
+2. Product List Screen (GET request):
+This screen will use a GET request to fetch and display all products from the server.
+
+=> Using Postman, you can verify the response structure, check if the products are correctly retrieved, and ensure there are no issues with the endpoint.
+
+
+Flutter Integration Flow:
+Use http package in Flutter to make REST API calls.
+For the Add Product Screen:
+
+Future<void> addProduct(Map<String, dynamic> productData) async {
+  final url = 'https://your-api-endpoint.com/products';
+  final response = await http.post(
+    Uri.parse(url),
+    body: jsonEncode(productData),
+    headers: {'Content-Type': 'application/json'},
+  );
+
+  if (response.statusCode == 201) {
+    print('Product added!');
+  } else {
+    print('Failed to add product: ${response.body}');
+  }
+}
+
+
+3. For the Product List Screen:
+
+Future<List<dynamic>> fetchProducts() async {
+  final url = 'https://your-api-endpoint.com/products';
+  final response = await http.get(Uri.parse(url));
+
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to load products');
+  }
+}
+
+
+Using Postman before Flutter integration allows you to confirm that your API endpoints are functioning correctly, making it easier to spot issues if something goes wrong in your app.
