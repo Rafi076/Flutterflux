@@ -9,6 +9,7 @@ import 'package:task_manager_prerecoded/screen/onboarding/pinVerificationScreen.
 import 'package:task_manager_prerecoded/screen/onboarding/registrationScreen.dart';
 import 'package:task_manager_prerecoded/screen/onboarding/setPasswordScreen.dart';
 import 'package:task_manager_prerecoded/screen/onboarding/splashScreen.dart';
+import 'package:task_manager_prerecoded/screen/task/newTaskListScreen.dart';
 
 void main(){
   runApp(MyApp());
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/emailVerification':(context) => emailVerificationScreen(),
         '/pinVerification':(context) => pinVerificationScreen(),
         '/setPassword':(context) => setPasswordScreen(),
+        '/newTaskList':(context) => newTaskListScreen(),
       },
     );
   }
