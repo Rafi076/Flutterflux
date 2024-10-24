@@ -3,19 +3,20 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../style/style.dart';
+import '../utility/utility.dart';
 
 var BaseURL="http://152.42.163.176:2006/api/v1";   // Task Manger --> BaseUrl
 var RequestHeader={"Content-Type":"application/json"}; // Login --> Header --> content type
 
-Future<bool> LoginRequest(FormValues) async{
+Future<bool> LoginRequest(FromValues) async{
   var URL=Uri.parse("${BaseURL}/login");
-  var PostBody=json.encode(FormValues);
+  var PostBody=json.encode(FromValues);
   var response= await http.post(URL,headers:RequestHeader,body: PostBody);
   var ResultCode=response.statusCode;
   var ResultBody=json.decode(response.body);
   if(ResultCode==200 && ResultBody['status']=="success"){
     SuccessToast("Request Success");
-    //await WriteUserData(ResultBody);
+    await WriteUserData(ResultBody);
     return true;
   }
   else{
@@ -24,9 +25,9 @@ Future<bool> LoginRequest(FormValues) async{
   }
 }
 
-Future<bool> RegistrationRequest(FormValues) async{
+Future<bool> RegistrationRequest(FromValues) async{
   var URL=Uri.parse("${BaseURL}/registration");
-  var PostBody=json.encode(FormValues);
+  var PostBody=json.encode(FromValues);
   var response= await http.post(URL,headers:RequestHeader,body: PostBody);
   var ResultCode=response.statusCode;
   var ResultBody=json.decode(response.body);
@@ -75,10 +76,10 @@ Future<bool> VerifyOTPRequest(Email,OTP) async{
   }
 }
 
-Future<bool> SetPasswordRequest(FormValues) async{
+Future<bool> SetPasswordRequest(FromValues) async{
 
   var URL=Uri.parse("${BaseURL}/RecoverResetPass");
-  var PostBody=json.encode(FormValues);
+  var PostBody=json.encode(FromValues);
 
   var response= await  http.post(URL,headers:RequestHeader,body: PostBody);
 
@@ -113,13 +114,13 @@ Future<bool> SetPasswordRequest(FormValues) async{
 //   }
 // }
 //
-// Future<bool> TaskCreateRequest(FormValues) async {
+// Future<bool> TaskCreateRequest(FromValues) async {
 //
 //   var URL=Uri.parse("${BaseURL}/createTask");
 //   String? token= await ReadUserData("token");
 //   var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
 //
-//   var PostBody=json.encode(FormValues);
+//   var PostBody=json.encode(FromValues);
 //
 //   var response= await http.post(URL,headers:RequestHeaderWithToken,body: PostBody);
 //   var ResultCode=response.statusCode;
