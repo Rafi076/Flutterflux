@@ -14,28 +14,12 @@ class newTaskListScreen extends StatefulWidget {
 class _newTaskListScreenState extends State<newTaskListScreen> {
 
 
-  String email = "";
-
-  @override
-  void initState() {
-    CallUserData();
-    super.initState();
-  }
-
-  CallUserData() async {
-    String? a = await ReadUserData("email");
-    setState(() {
-      email = a!;
-    });
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child: Text(email)),
+          child: Text("New Task")),
     );
   }
 }
