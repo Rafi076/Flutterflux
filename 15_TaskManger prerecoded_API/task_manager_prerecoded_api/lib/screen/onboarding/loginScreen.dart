@@ -14,7 +14,7 @@ class loginScreen extends StatefulWidget {
 class _loginScreenState extends State<loginScreen> {
 
 
-  Map<String, String> FromValues = {
+  Map<String, String> FormValues = {
     // there is only 2 value (email, password) in my POST Login API
     "email": "",
     "password": "",
@@ -24,19 +24,18 @@ class _loginScreenState extends State<loginScreen> {
   // to using 2 input field we used 2 time call a {OnPressed} function which can be Expensive. instead of this we will use InputOnChange()
   InputOnChange(Mapkey, TextValue) {
     setState(() {
-      FromValues.update(Mapkey, (value) => TextValue);
+      FormValues.update(Mapkey, (value) => TextValue);
     });
   }
 
 
 
 
-
   FormOnSubmit() async {
-    if(FromValues['email']!.length == 0){
+    if(FormValues['email']!.length == 0){
       ErrorToast('email Required');
     }
-    else if(FromValues['password']!.length == 0){
+    else if(FormValues['password']!.length == 0){
       ErrorToast('password Required');
     }
     else{
@@ -45,7 +44,7 @@ class _loginScreenState extends State<loginScreen> {
       });
 
       // LoginRequest API Called!
-      bool res=await LoginRequest(FromValues);
+      bool res=await LoginRequest(FormValues);
       if(res==true){
         // Navigate to dashboard page
         Navigator.pushNamedAndRemoveUntil(context, "/newTaskList", (route) => false);
@@ -54,6 +53,7 @@ class _loginScreenState extends State<loginScreen> {
         setState(() {
           Loading=false;
         });
+         ErrorToast('Something went wrong! Try again.');
       }
 
     }
