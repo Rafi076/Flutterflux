@@ -29,42 +29,33 @@ class _loginScreenState extends State<loginScreen> {
   }
 
 
-
-
   FormOnSubmit() async {
-    if(FormValues['email']!.length == 0){
+    if (FormValues['email']!.length == 0) {
       ErrorToast('email Required');
     }
-    else if(FormValues['password']!.length == 0){
+    else if (FormValues['password']!.length == 0) {
       ErrorToast('password Required');
     }
-    else{
+    else {
       setState(() {
         Loading = true;
       });
 
       // LoginRequest API Called!
-      bool res=await LoginRequest(FormValues);
-      if(res==true){
+      bool res = await LoginRequest(FormValues);
+      if (res == true) {
         // Navigate to dashboard page
-        Navigator.pushNamedAndRemoveUntil(context, "/newTaskList", (route) => false);
+        Navigator.pushNamedAndRemoveUntil(
+            context, "/newTaskList", (route) => false);
       }
-      else{
+      else {
         setState(() {
-          Loading=false;
+          Loading = false;
         });
-         ErrorToast('Something went wrong! Try again.');
+        ErrorToast('Something went wrong! Try again.');
       }
-
     }
   }
-
-
-
-
-
-
-
 
 
   @override
@@ -74,9 +65,11 @@ class _loginScreenState extends State<loginScreen> {
         children: [
           ScreenBackground(context),
           Container(
-            alignment: Alignment.center,  // to make the content in center
+            alignment: Alignment.center, // to make the content in center
 
-            child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView(
+            child: Loading
+                ? (Center(child: CircularProgressIndicator(),))
+                : (SingleChildScrollView(
               // Here -->  child: Loading?(Center(child: CircularProgressIndicator(),)):(SingleChildScrollView( --> this is for showing loading while clicking login if login going to be true
 
               padding: EdgeInsets.all(30),
@@ -109,10 +102,47 @@ class _loginScreenState extends State<loginScreen> {
 
                   Container(child: ElevatedButton(
                       style: AppButtonStyle(),
-                      onPressed: (){
+                      onPressed: () {
                         FormOnSubmit();
                       },
-                      child: SuccessButtonChild('Login')),)
+                      child: SuccessButtonChild('Login')),),
+
+
+                  SizedBox(height: 20,),
+
+
+                  Container(
+                    alignment: Alignment.center,
+                    child: Column(
+                      children: [
+                        SizedBox(height: 20,),
+
+                        // InkWell is used to provide a visual ripple effect and handle touch interactions, such as navigating to the emailVerification screen when tapped
+                        InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/emailVerification");
+                          },
+                          child: Text('Forget Password?',
+                            style: Head6Text(colorLightGray),
+                          ),
+                        ),
+                        SizedBox(height: 15),
+
+                        InkWell(
+                            onTap: (){
+                              Navigator.pushNamed(context, "/registration");
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("Don't have a account? ",style: Head6Text(colorDarkBlue)),
+                                Text("Sign Up",style: Head6Text(colorGreen),)
+                              ],
+                            )
+                        )
+                      ],
+                    ),
+                  )
 
                 ],
               ),
