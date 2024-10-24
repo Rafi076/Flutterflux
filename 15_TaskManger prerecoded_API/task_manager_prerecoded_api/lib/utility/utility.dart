@@ -16,8 +16,8 @@ Future<void> WriteUserData(UserData) async {
 }
 
 // Read sharePreference
-// Future<String?> ReadUserData(Key) async {
-//   final prefs = await SharedPreferences.getInstance();
-//   String? mydata= await prefs.getString(Key);
-//   return mydata;
-// }
+Future<String?> ReadUserData(Key) async {
+  final prefs = await SharedPreferences.getInstance();
+  String? mydata= await prefs.getString(Key);
+  return mydata;
+}
