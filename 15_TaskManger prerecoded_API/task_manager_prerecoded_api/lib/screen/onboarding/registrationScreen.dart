@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../../api/apiClient.dart';
 import '../../style/style.dart';
 
 class registrationScreen extends StatefulWidget {
@@ -11,6 +12,54 @@ class registrationScreen extends StatefulWidget {
 }
 
 class _registrationScreenState extends State<registrationScreen> {
+  Map<String, String> FormValues = {
+    "email": "",
+    "firstName": "",
+    "lastName": "",
+    "mobile": "",
+    "password": "",
+    "photo": "",
+    "cpassword": ""
+  };
+  bool Loading = false;
+
+  InputOnChange(MapKey, Textvalue) {
+    setState(() {
+      FormValues.update(MapKey, (value) => Textvalue);
+    });
+  }
+
+  FormOnSubmit() async {
+    if (FormValues['email']!.length == 0) {
+      ErrorToast('email Required');
+    } else if (FormValues['firstName']!.length == 0) {
+      ErrorToast('First Name Required !');
+    } else if (FormValues['lastName']!.length == 0) {
+      ErrorToast('Last Name Required !');
+    } else if (FormValues['mobile']!.length == 0) {
+      ErrorToast('Mobile No Required !');
+    } else if (FormValues['password']!.length == 0) {
+      ErrorToast('Mobile No Required !');
+    } else if (FormValues['password'] != FormValues['cpassword']) {
+      ErrorToast('Confirm password should be same!');
+    } else {
+      setState(() {
+        Loading = true;
+      });
+
+      // LoginRequest API Called!
+      bool res = await RegistrationRequest(FormValues);
+      if (res == true) {
+        Navigator.pushNamedAndRemoveUntil(context, "/login", (route) => false);  //  (route) => false   ==>> this mean we have cleared Routing history
+      } else {
+        setState(() {
+          Loading = false;
+        });
+        ErrorToast('Something went wrong! Try again.');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,34 +67,67 @@ class _registrationScreenState extends State<registrationScreen> {
         children: [
           ScreenBackground(context),
           Container(
-            padding: EdgeInsets.all(30),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Join With Us", style: Head1Text(colorDarkBlue),),
-                const SizedBox(height: 1,),
-                Text("Learn With Rafi", style: Head6Text(colorLightGray),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Email Address "),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("First Name "),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Last Name "),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Mobile "),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Password "),),
-                const SizedBox(height: 20,),
-                TextFormField(decoration: AppInputDecoration("Confirm Password "),),
-                const SizedBox(height: 20,),
-                Container(child: ElevatedButton(
-                    style: AppButtonStyle(),
-                    onPressed: (){},
-                    child: SuccessButtonChild('Registration')),)
-
-              ],
-            ),
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+                child: Loading? (Center(child: CircularProgressIndicator())) : (Container(padding: EdgeInsets.all(30), child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text("Join With Us",
+                                style: Head1Text(colorDarkBlue)),
+                            SizedBox(height: 1),
+                            Text("Learn with rabbil hasan",
+                                style: Head6Text(colorLightGray)),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Email Address"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("email", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("First Name"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("firstName", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Last Name"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("lastName", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Mobile"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("mobile", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration: AppInputDecoration("Password"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("password", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            TextFormField(
+                                decoration:
+                                    AppInputDecoration("Confirm Password"),
+                                onChanged: (Textvalue) {
+                                  InputOnChange("cpassword", Textvalue);
+                                }),
+                            SizedBox(height: 20),
+                            Container(
+                              child: ElevatedButton(
+                                style: AppButtonStyle(),
+                                child: SuccessButtonChild('Registration'),
+                                onPressed: () {
+                                  FormOnSubmit();
+                                },
+                              ),
+                            )
+                          ],
+                        ),
+                      ))),
           )
         ],
       ),

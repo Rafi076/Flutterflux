@@ -26,9 +26,11 @@ Future<bool> LoginRequest(FormValues) async{
       SuccessToast("Request Success");
 
       await writeUserData(resultBody);
+
       return true;
     } else {
-      ErrorToast("Request failed! Try again.");
+      ErrorToast(resultBody['message'] ?? "Registration failed! Try again.");
+      ErrorToast("Server error: ${response.statusCode}");
       return false;
     }
   } catch (e) {
@@ -42,20 +44,36 @@ Future<bool> LoginRequest(FormValues) async{
 
 
 Future<bool> RegistrationRequest(FormValues) async{
-  var URL=Uri.parse("${BaseURL}/registration");
-  var PostBody=json.encode(FormValues);
-  var response= await  http.post(URL,headers:RequestHeader,body: PostBody);
-  var ResultCode=response.statusCode;
-  var ResultBody=json.decode(response.body);
-  if(ResultCode==200 && ResultBody['status']=="success"){
-    SuccessToast("Request Success");
-    return true;
-  }
-  else{
-    ErrorToast("Request fail ! try again");
+  try{
+    var URL=Uri.parse("${BaseURL}/registration");
+    var PostBody=json.encode(FormValues);
+
+    var response= await  http.post(URL,headers:RequestHeader,body: PostBody);
+
+    var resultCode=response.statusCode;
+    var resultBody=json.decode(response.body);
+
+    if(resultCode==200 && resultBody['status']=="success"){
+      SuccessToast("Request Success");
+
+
+      return true;
+    }
+    else{
+      ErrorToast(resultBody['message'] ?? "Registration failed! Try again.");
+      ErrorToast("Server error: ${response.statusCode}");
+      return false;
+    }
+  }catch (e) {
+    ErrorToast("An error occurred: $e");
     return false;
   }
 }
+
+
+
+
+
 
 Future<bool> VerifyEmailRequest(Email) async{
   var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
