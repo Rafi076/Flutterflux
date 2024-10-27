@@ -4,8 +4,11 @@ import 'package:http/http.dart' as http;
 import '../style/style.dart';
 import '../utility/utility.dart';
 
-var BaseURL="http://152.42.163.176:2006/api/v1";   // Task Manger --> BaseUrl
+var BaseURL="http://35.73.30.144:2005/api/v1";   // Task Manger --> BaseUrl
 var RequestHeader={"Content-Type":"application/json"}; // Login --> Header --> content type
+
+
+
 
 Future<bool> LoginRequest(FormValues) async{
 
@@ -55,8 +58,6 @@ Future<bool> RegistrationRequest(FormValues) async{
 
     if(resultCode==200 && resultBody['status']=="success"){
       SuccessToast("Request Success");
-
-
       return true;
     }
     else{
@@ -76,36 +77,57 @@ Future<bool> RegistrationRequest(FormValues) async{
 
 
 Future<bool> VerifyEmailRequest(Email) async{
-  var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
-  var response= await http.get(URL,headers:RequestHeader);
-  var ResultCode=response.statusCode;
-  var ResultBody=json.decode(response.body);
-  if(ResultCode==200 && ResultBody['status']=="success"){
-    //await WriteEmailVerification(Email);
-    SuccessToast("Request Success");
-    return true;
-  }
-  else{
-    ErrorToast("Request fail ! try again");
+  try{
+    var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
+    var response= await http.get(URL,headers:RequestHeader);
+    var resultCode=response.statusCode;
+    var resultBody=json.decode(response.body);
+    if(resultCode==200 && resultBody['status']=="success"){
+      await WriteEmailVerification(Email);
+      SuccessToast("Request Success");
+      return true;
+    }
+    else{
+      ErrorToast(resultBody['message'] ?? "Verifying request failed! Try again.");
+      ErrorToast("Server error: ${response.statusCode}");
+      return false;
+    }
+  }catch (e) {
+    ErrorToast("An error occurred: $e");
     return false;
   }
 }
 
+
+
+
+
+
 Future<bool> VerifyOTPRequest(Email,OTP) async{
-  var URL=Uri.parse("${BaseURL}/RecoverVerifyOTP/${Email}/${OTP}");
-  var response= await  http.get(URL,headers:RequestHeader);
-  var ResultCode=response.statusCode;
-  var ResultBody=json.decode(response.body);
-  if(ResultCode==200 && ResultBody['status']=="success"){
-    //await WriteOTPVerification(OTP);
-    SuccessToast("Request Success");
-    return true;
-  }
-  else{
-    ErrorToast("Request fail ! try again");
+  try{
+    var URL=Uri.parse("${BaseURL}/RecoverVerifyOTP/${Email}/${OTP}");
+    var response= await  http.get(URL,headers:RequestHeader);
+    var resultCode=response.statusCode;
+    var resultBody=json.decode(response.body);
+    if(resultCode==200 && resultBody['status']=="success"){
+      await WriteOTPVerification(OTP);
+      SuccessToast("Request Success");
+      return true;
+    }
+    else{
+      ErrorToast(resultBody['message'] ?? "Verifying OTP failed! Try again.");
+      ErrorToast("Server error: ${response.statusCode}");
+      return false;
+    }
+  }catch (e) {
+    ErrorToast("An error occurred: $e");
     return false;
   }
 }
+
+
+
+
 
 Future<bool> SetPasswordRequest(FormValues) async{
 
