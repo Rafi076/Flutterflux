@@ -17,7 +17,9 @@ class _emailVerificationScreenState extends State<emailVerificationScreen> {
 
 
 
-  Map<String,String> FormValues={"email":""};
+  Map<String,String> FormValues={
+    "email":""
+  };
   bool Loading=false;
 
   InputOnChange(MapKey, Textvalue){

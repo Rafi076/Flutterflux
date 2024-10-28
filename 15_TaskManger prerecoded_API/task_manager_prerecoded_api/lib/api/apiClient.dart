@@ -80,10 +80,14 @@ Future<bool> VerifyEmailRequest(Email) async{
   try{
     var URL=Uri.parse("${BaseURL}/RecoverVerifyEmail/${Email}");
     var response= await http.get(URL,headers:RequestHeader);
+
     var resultCode=response.statusCode;
     var resultBody=json.decode(response.body);
+
     if(resultCode==200 && resultBody['status']=="success"){
+
       await WriteEmailVerification(Email);
+
       SuccessToast("Request Success");
       return true;
     }
@@ -107,10 +111,14 @@ Future<bool> VerifyOTPRequest(Email,OTP) async{
   try{
     var URL=Uri.parse("${BaseURL}/RecoverVerifyOTP/${Email}/${OTP}");
     var response= await  http.get(URL,headers:RequestHeader);
+
     var resultCode=response.statusCode;
     var resultBody=json.decode(response.body);
+
     if(resultCode==200 && resultBody['status']=="success"){
+
       await WriteOTPVerification(OTP);
+
       SuccessToast("Request Success");
       return true;
     }
@@ -129,26 +137,29 @@ Future<bool> VerifyOTPRequest(Email,OTP) async{
 
 
 
-Future<bool> SetPasswordRequest(FormValues) async{
+Future<bool> SetPasswordRequest(FormValues) async {
+  try {
+    var URL = Uri.parse("${BaseURL}}/RecoverResetPassword");
+    var PostBody = json.encode(FormValues);
+    var response = await http.post(URL, headers: RequestHeader, body: PostBody);
 
-  var URL=Uri.parse("${BaseURL}/RecoverResetPass");
-  var PostBody=json.encode(FormValues);
-
-  var response= await  http.post(URL,headers:RequestHeader,body: PostBody);
-
-  var ResultCode=response.statusCode;
-  var ResultBody=json.decode(response.body);
-
-
-  if(ResultCode==200 && ResultBody['status']=="success"){
-    SuccessToast("Request Success");
-    return true;
-  }
-  else{
-    ErrorToast("Request fail ! try again");
+    if (response.statusCode == 200) {
+      var resultBody = json.decode(response.body);
+      if (resultBody['status'] == "success") {
+        SuccessToast("Password Reset Successful");
+        return true;
+      } else {
+        throw Exception(resultBody['message'] ?? "Unexpected error");
+      }
+    } else {
+      throw Exception("Server Error: ${response.statusCode}");
+    }
+  } catch (e) {
+    ErrorToast("Error: $e");
     return false;
   }
 }
+
 
 
 

@@ -37,7 +37,7 @@ Future<void> WriteOTPVerification(OTP) async {
 }
 
 
-// Read sharePreference
+// Read sharePreference -->> it will work for each data like email,name,mobile
 Future<String?> ReadUserData(Key) async {
   final prefs = await SharedPreferences.getInstance();
   String? mydata= await prefs.getString(Key);
