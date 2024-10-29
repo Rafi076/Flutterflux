@@ -46,7 +46,7 @@ class _loginScreenState extends State<loginScreen> {
       if (res == true) {
         // Navigate to dashboard page
         Navigator.pushNamedAndRemoveUntil(
-            context, "/newTaskList", (route) => false);
+            context, "/", (route) => false);
       }
       else {
         setState(() {

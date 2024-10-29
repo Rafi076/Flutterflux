@@ -9,7 +9,8 @@ import 'package:task_manager_prerecoded/screen/onboarding/pinVerificationScreen.
 import 'package:task_manager_prerecoded/screen/onboarding/registrationScreen.dart';
 import 'package:task_manager_prerecoded/screen/onboarding/setPasswordScreen.dart';
 import 'package:task_manager_prerecoded/screen/onboarding/splashScreen.dart';
-import 'package:task_manager_prerecoded/screen/task/newTaskListScreen.dart';
+import 'package:task_manager_prerecoded/screen/task/homeScreen.dart';
+import 'package:task_manager_prerecoded/component/newTaskList.dart';
 import 'package:task_manager_prerecoded/utility/utility.dart';
 
 main() async {
@@ -24,7 +25,7 @@ main() async {
     runApp(MyApp("/login"));
   }
   else{
-    runApp(MyApp("/newTaskList"));
+    runApp(MyApp("/"));
   }
 }
 
@@ -39,13 +40,13 @@ class MyApp extends StatelessWidget {
       title: "Task Manager",
       initialRoute: FirstRoute,
       routes: {
-        '/':(context) => splashScreen(),
+        '/':(context) => homeScreen(),
         '/login':(context) => loginScreen(),
         '/registration':(context) => registrationScreen(),
         '/emailVerification':(context) => emailVerificationScreen(),
         '/pinVerification':(context) => pinVerificationScreen(),
         '/setPassword':(context) => setPasswordScreen(),
-        '/newTaskList':(context) => newTaskListScreen(),
+        //'/newTaskList':(context) => newTaskListScreen(),
       },
     );
   }
