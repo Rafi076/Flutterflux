@@ -8,7 +8,8 @@ var BaseURL="http://35.73.30.144:2005/api/v1";   // Task Manger --> BaseUrl
 var RequestHeader={"Content-Type":"application/json"}; // Login --> Header --> content type
 
 
-
+// gmail already reg :-->> mohiuddinrafi076@gmail.com
+// pass:             -->> 123456789
 
 Future<bool> LoginRequest(FormValues) async{
 
@@ -139,23 +140,23 @@ Future<bool> VerifyOTPRequest(Email,OTP) async{
 
 Future<bool> SetPasswordRequest(FormValues) async {
   try {
-    var URL = Uri.parse("${BaseURL}}/RecoverResetPassword");
+    var URL = Uri.parse("${BaseURL}/RecoverResetPassword");
     var PostBody = json.encode(FormValues);
-    var response = await http.post(URL, headers: RequestHeader, body: PostBody);
 
-    if (response.statusCode == 200) {
-      var resultBody = json.decode(response.body);
-      if (resultBody['status'] == "success") {
-        SuccessToast("Password Reset Successful");
-        return true;
-      } else {
-        throw Exception(resultBody['message'] ?? "Unexpected error");
-      }
+    var response = await http.post(URL, headers: RequestHeader, body: PostBody);
+    var resultCode = response.statusCode;
+    var resultBody = json.decode(response.body);
+
+    if (resultCode == 200 && resultBody['status'] == "success") {
+      SuccessToast("Password Reset Successful");
+      return true;
     } else {
-      throw Exception("Server Error: ${response.statusCode}");
+      ErrorToast(resultBody['message'] ?? "Password reset failed! Try again.");
+      ErrorToast("Server error: $resultCode");
+      return false;
     }
   } catch (e) {
-    ErrorToast("Error: $e");
+    ErrorToast("An error occurred: $e");
     return false;
   }
 }
