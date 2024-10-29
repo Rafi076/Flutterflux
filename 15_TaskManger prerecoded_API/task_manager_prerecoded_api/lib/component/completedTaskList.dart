@@ -11,6 +11,8 @@ class completedTaskList extends StatefulWidget {
 class _completedTaskListState extends State<completedTaskList> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text('completed task'),
+    );
   }
 }

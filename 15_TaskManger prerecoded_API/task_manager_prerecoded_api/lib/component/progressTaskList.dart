@@ -12,6 +12,8 @@ class taskCreateScreen extends StatefulWidget {
 class _taskCreateScreenState extends State<taskCreateScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Center(
+      child: Text('progress task'),
+    );
   }
 }

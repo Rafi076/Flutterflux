@@ -11,6 +11,17 @@ class homeScreen extends StatefulWidget {
 }
 
 class _homeScreenState extends State<homeScreen> {
+
+  int bottomTabIndex = 0;
+
+  onItemTapped(int index){
+    setState(() {
+      bottomTabIndex = index;
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +29,7 @@ class _homeScreenState extends State<homeScreen> {
         title: Text("Home Screen"),
       ),
       body: Center(),
-      bottomNavigationBar:  appBottomNav(1),
+      bottomNavigationBar:  appBottomNav(bottomTabIndex, onItemTapped),
     );
   }
 }

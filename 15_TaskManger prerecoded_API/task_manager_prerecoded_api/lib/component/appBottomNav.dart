@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager_prerecoded/style/style.dart';
 
-BottomNavigationBar appBottomNav(currentIndex){
+BottomNavigationBar appBottomNav(currentIndex,onItemTapped){
   return BottomNavigationBar(
       items: const [
         BottomNavigationBarItem(
@@ -11,15 +11,15 @@ BottomNavigationBar appBottomNav(currentIndex){
             label: "New",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt),
+          icon: Icon(Icons.access_time_rounded),
           label: "Progress",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt),
+          icon: Icon(Icons.check_circle_rounded),
           label: "Completed",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.list_alt),
+          icon: Icon(Icons.cancel_rounded),
           label: "Cancel",
         ),
 
@@ -34,5 +34,10 @@ BottomNavigationBar appBottomNav(currentIndex){
         // to see the selected & unselected label context
           showSelectedLabels: true,
           showUnselectedLabels: true,
+
+
+          onTap: onItemTapped,
+          //to not move after tapping on nav icon
+          type: BottomNavigationBarType.fixed,
   );
 }
