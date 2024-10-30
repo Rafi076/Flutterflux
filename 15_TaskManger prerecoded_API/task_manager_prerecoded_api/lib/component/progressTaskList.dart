@@ -1,19 +1,17 @@
-
-
 import 'package:flutter/cupertino.dart';
 
-class taskCreateScreen extends StatefulWidget {
-  const taskCreateScreen({super.key});
+class progresstaskList extends StatefulWidget {
+  const progresstaskList({super.key});
 
   @override
-  State<taskCreateScreen> createState() => _taskCreateScreenState();
+  State<progresstaskList> createState() => _progresstaskListState();
 }
 
-class _taskCreateScreenState extends State<taskCreateScreen> {
+class _progresstaskListState extends State<progresstaskList> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('progress task'),
+      child: Text('Progress task'),
     );
   }
 }
