@@ -38,7 +38,7 @@ class _homeScreenState extends State<homeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
+        title: Text("Home Screen.."),
       ),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar:  appBottomNav(TabIndex, onItemTapped),
