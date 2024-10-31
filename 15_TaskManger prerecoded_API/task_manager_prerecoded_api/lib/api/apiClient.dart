@@ -165,23 +165,36 @@ Future<bool> SetPasswordRequest(FormValues) async {
 
 
 
-//
-// Future<List> TaskListRequest(Status) async {
-//   var URL=Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
-//   String? token= await ReadUserData("token");
-//   var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
-//   var response= await http.get(URL,headers:RequestHeaderWithToken);
-//   var ResultCode=response.statusCode;
-//   var ResultBody=json.decode(response.body);
-//   if(ResultCode==200 && ResultBody['status']=="success"){
-//     SuccessToast("Request Success");
-//     return ResultBody['data'];
-//   }
-//   else{
-//     ErrorToast("Request fail ! try again");
-//     return [];
-//   }
-// }
+
+Future<List> TaskListRequest(String status) async {
+  try {
+    var url = Uri.parse("${BaseURL}/listTaskByStatus/$status");
+    String? token = await ReadUserData("token");
+    var requestHeaderWithToken = {
+      "Content-Type": "application/json",
+      "token": '$token'
+    };
+
+    var response = await http.get(url, headers: requestHeaderWithToken);
+    var resultCode = response.statusCode;
+    var resultBody = json.decode(response.body);
+
+    if (resultCode == 200 && resultBody['status'] == "success") {
+      SuccessToast("Request Successful");
+      return resultBody['data'];
+    } else {
+      ErrorToast(resultBody['message'] ?? "Request failed! Try again.");
+      ErrorToast("Server error: $resultCode");
+      return [];
+    }
+  } catch (e) {
+    ErrorToast("An error occurred: $e");
+    return [];
+  }
+}
+
+
+
 //
 // Future<bool> TaskCreateRequest(FormValues) async {
 //
