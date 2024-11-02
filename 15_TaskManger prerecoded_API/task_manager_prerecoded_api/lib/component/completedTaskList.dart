@@ -25,7 +25,7 @@ class _completedTaskListState extends State<completedTaskList> {
 
 
   callDtata() async {
-    var data = await TaskListRequest("New");
+    var data = await TaskListRequest("completed");
     setState(() {
       Loading = false;
       TaskItems = data;
