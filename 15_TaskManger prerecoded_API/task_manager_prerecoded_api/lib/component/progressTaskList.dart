@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
 import '../style/style.dart';
@@ -44,8 +45,9 @@ class _progresstaskListState extends State<progresstaskList> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return Loading?(Center(
+        child: CircularProgressIndicator())):(Center(
       child: Text('Progress task'),
-    );
+    ));
   }
 }

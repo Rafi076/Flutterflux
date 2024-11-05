@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
 import '../style/style.dart';
@@ -41,8 +42,9 @@ class _cancelTasklistState extends State<cancelTasklist> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('cancel task'),
-    );
+    return Loading?(Center(
+        child: CircularProgressIndicator())):(Center(
+      child: Text('Cnacel task'),
+    ));
   }
 }

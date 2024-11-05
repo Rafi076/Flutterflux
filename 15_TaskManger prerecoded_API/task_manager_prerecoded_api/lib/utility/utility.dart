@@ -8,7 +8,7 @@ Future<void> writeUserData(userData) async {
     final prefs = await SharedPreferences.getInstance();
 
     // Accessing the first element inside 'data' list
-    var userInfo = userData['data'][0];
+    var userInfo = userData['data'];
 
     await prefs.setString('_id', userInfo['_id']);
     await prefs.setString('email', userInfo['email']);

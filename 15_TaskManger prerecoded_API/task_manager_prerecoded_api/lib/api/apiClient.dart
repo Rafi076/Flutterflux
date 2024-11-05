@@ -166,7 +166,7 @@ Future<bool> SetPasswordRequest(FormValues) async {
 
 Future<List> TaskListRequest(Status) async {
   try {
-    var url = Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
+    var URL = Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
     String? token= await ReadUserData("token");
 
     // Check if token is nullReadUserData
@@ -180,7 +180,7 @@ Future<List> TaskListRequest(Status) async {
       "token": '$token'
     };
 
-    var response = await http.get(url, headers: requestHeaderWithToken);
+    var response = await http.get(URL, headers: requestHeaderWithToken);
     var resultCode = response.statusCode;
 
     // Decode response body and handle JSON decoding errors
