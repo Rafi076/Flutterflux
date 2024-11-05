@@ -164,12 +164,17 @@ Future<bool> SetPasswordRequest(FormValues) async {
 
 
 
-
-// taskList
-Future<List> TaskListRequest(String status) async {
+Future<List> TaskListRequest(Status) async {
   try {
-    var url = Uri.parse("${BaseURL}/listTaskByStatus/$status");
-    String? token = await ReadUserData("token");
+    var url = Uri.parse("${BaseURL}/listTaskByStatus/${Status}");
+    String? token= await ReadUserData("token");
+
+    // Check if token is nullReadUserData
+    if (token == null) {
+      ErrorToast("Token not found. Please log in again.");
+      return [];
+    }
+
     var requestHeaderWithToken = {
       "Content-Type": "application/json",
       "token": '$token'
@@ -177,14 +182,15 @@ Future<List> TaskListRequest(String status) async {
 
     var response = await http.get(url, headers: requestHeaderWithToken);
     var resultCode = response.statusCode;
+
+    // Decode response body and handle JSON decoding errors
     var resultBody = json.decode(response.body);
 
     if (resultCode == 200 && resultBody['status'] == "success") {
-      SuccessToast("Request Successful");
+      SuccessToast("Request Success");
       return resultBody['data'];
     } else {
       ErrorToast(resultBody['message'] ?? "Request failed! Try again.");
-      ErrorToast("Server error: $resultCode");
       return [];
     }
   } catch (e) {
@@ -192,6 +198,7 @@ Future<List> TaskListRequest(String status) async {
     return [];
   }
 }
+
 
 
 

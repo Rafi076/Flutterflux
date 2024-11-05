@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../api/apiClient.dart';
+import '../style/style.dart';
 
 class cancelTasklist extends StatefulWidget {
   const cancelTasklist({super.key});
@@ -21,16 +22,20 @@ class _cancelTasklistState extends State<cancelTasklist> {
     super.initState();
   }
 
-
-
   callDtata() async {
-    var data = await TaskListRequest("cancel");
-    setState(() {
-      Loading = false;
-      TaskItems = data;
-    });
+    try {
+      var data = await TaskListRequest("cancel");
+      setState(() {
+        Loading = false;
+        TaskItems = data;
+      });
+    } catch (e) {
+      setState(() {
+        Loading = false;
+      });
+      ErrorToast("Failed to load tasks: $e");
+    }
   }
-
 
 
 

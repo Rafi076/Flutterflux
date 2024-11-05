@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 import '../api/apiClient.dart';
+import '../style/style.dart';
 
 class progresstaskList extends StatefulWidget {
   const progresstaskList({super.key});
@@ -11,7 +12,6 @@ class progresstaskList extends StatefulWidget {
 
 class _progresstaskListState extends State<progresstaskList> {
 
-
   List TaskItems = [];
   bool Loading = true;
 
@@ -21,14 +21,19 @@ class _progresstaskListState extends State<progresstaskList> {
     super.initState();
   }
 
-
-
   callDtata() async {
-    var data = await TaskListRequest("Progress");
-    setState(() {
-      Loading = false;
-      TaskItems = data;
-    });
+    try {
+      var data = await TaskListRequest("Progress");
+      setState(() {
+        Loading = false;
+        TaskItems = data;
+      });
+    } catch (e) {
+      setState(() {
+        Loading = false;
+      });
+      ErrorToast("Failed to load tasks: $e");
+    }
   }
 
 
