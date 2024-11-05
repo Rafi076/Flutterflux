@@ -12,12 +12,11 @@ class progresstaskList extends StatefulWidget {
 }
 
 class _progresstaskListState extends State<progresstaskList> {
-
   List TaskItems = [];
   bool Loading = true;
 
   @override
-  void initState(){
+  void initState() {
     callDtata();
     super.initState();
   }
@@ -37,17 +36,17 @@ class _progresstaskListState extends State<progresstaskList> {
     }
   }
 
-
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(
-        child: CircularProgressIndicator())):(Center(
-      child: Text('Progress task'),
-    ));
+    return Loading
+        ? (Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await callDtata();
+            },
+            child: Center(
+              child: Text('Progress'),
+            ),
+          );
   }
 }

@@ -12,13 +12,11 @@ class cancelTasklist extends StatefulWidget {
 }
 
 class _cancelTasklistState extends State<cancelTasklist> {
-
-
   List TaskItems = [];
   bool Loading = true;
 
   @override
-  void initState(){
+  void initState() {
     callDtata();
     super.initState();
   }
@@ -38,13 +36,17 @@ class _cancelTasklistState extends State<cancelTasklist> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(
-        child: CircularProgressIndicator())):(Center(
-      child: Text('Cnacel task'),
-    ));
+    return Loading
+        ? (Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await callDtata();
+            },
+            child: Center(
+              child: Text('Cancel'),
+            ),
+          );
   }
 }

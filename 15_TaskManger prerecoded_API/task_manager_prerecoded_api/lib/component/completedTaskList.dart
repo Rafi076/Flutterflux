@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,12 +12,11 @@ class completedTaskList extends StatefulWidget {
 }
 
 class _completedTaskListState extends State<completedTaskList> {
-
   List TaskItems = [];
   bool Loading = true;
 
   @override
-  void initState(){
+  void initState() {
     callDtata();
     super.initState();
   }
@@ -38,13 +36,17 @@ class _completedTaskListState extends State<completedTaskList> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(
-        child: CircularProgressIndicator())):(Center(
-      child: Text('Completed task'),
-    ));
+    return Loading
+        ? (Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await callDtata();
+            },
+            child: Center(
+              child: Text('Completed'),
+            ),
+          );
   }
 }

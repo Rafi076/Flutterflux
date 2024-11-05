@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_prerecoded/api/apiClient.dart';
@@ -14,12 +12,11 @@ class newTaskList extends StatefulWidget {
 }
 
 class _newTaskListState extends State<newTaskList> {
-
   List TaskItems = [];
   bool Loading = true;
 
   @override
-  void initState(){
+  void initState() {
     callDtata();
     super.initState();
   }
@@ -39,16 +36,17 @@ class _newTaskListState extends State<newTaskList> {
     }
   }
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
-    return Loading?(Center(
-      child: CircularProgressIndicator())):(Center(
-      child: Text('new task'),
-    ));
+    return Loading
+        ? (Center(child: CircularProgressIndicator()))
+        : RefreshIndicator(
+            onRefresh: () async {
+              await callDtata();
+            },
+            child: Center(
+              child: Text('New'),
+            ),
+          );
   }
 }
