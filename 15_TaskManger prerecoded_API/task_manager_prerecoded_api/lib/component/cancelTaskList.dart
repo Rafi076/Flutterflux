@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../api/apiClient.dart';
 import '../style/style.dart';
+import 'TaskList.dart';
 
 class cancelTasklist extends StatefulWidget {
   const cancelTasklist({super.key});
@@ -44,9 +45,7 @@ class _cancelTasklistState extends State<cancelTasklist> {
             onRefresh: () async {
               await callDtata();
             },
-            child: Center(
-              child: Text('Cancel'),
-            ),
+        child: TaskList(TaskItems)
           );
   }
 }

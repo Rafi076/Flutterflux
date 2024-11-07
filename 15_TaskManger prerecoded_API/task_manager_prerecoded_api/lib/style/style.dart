@@ -14,6 +14,18 @@ import 'package:pin_code_fields/pin_code_fields.dart';
   const colorLight = Colors.white70;
 
 
+  SizedBox ItemSizeBox(child){
+    return SizedBox(
+      width: double.infinity,
+      child: Container(
+        padding: EdgeInsets.all(10),
+        child: child,
+
+      ),
+    );
+  }
+
+
  // dependenci : pin_code_fields: ^8.0.1
 PinTheme AppOTPStyle(){
   return  PinTheme(
@@ -50,6 +62,17 @@ PinTheme AppOTPStyle(){
       fontWeight: FontWeight.w400,
     );
   }
+
+
+
+TextStyle Head7Text(textColor){
+  return TextStyle(
+    color: textColor,
+    fontSize: 12,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w200,
+  );
+}
 
 
 

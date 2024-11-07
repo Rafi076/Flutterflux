@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:task_manager_prerecoded/api/apiClient.dart';
+import 'package:task_manager_prerecoded/component/TaskList.dart';
 
 import '../style/style.dart';
 
@@ -44,9 +45,7 @@ class _newTaskListState extends State<newTaskList> {
             onRefresh: () async {
               await callDtata();
             },
-            child: Center(
-              child: Text('New'),
-            ),
+              child: TaskList(TaskItems)
           );
   }
 }
