@@ -4,6 +4,7 @@ import 'package:task_manager_prerecoded/component/cancelTaskList.dart';
 import 'package:task_manager_prerecoded/component/completedTaskList.dart';
 import 'package:task_manager_prerecoded/component/newTaskList.dart';
 
+import '../../component/TaskAppBar.dart';
 import '../../component/appBottomNav.dart';
 import '../../component/progressTaskList.dart';
 
@@ -37,9 +38,7 @@ class _homeScreenState extends State<homeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Home Screen.."),
-      ),
+      appBar: TaskAppBar(),
       body: widgetOptions.elementAt(TabIndex),
       bottomNavigationBar:  appBottomNav(TabIndex, onItemTapped),
     );
