@@ -1,7 +1,6 @@
 
 import 'dart:convert';   // For base64 decoding
 import 'dart:typed_data'; // For Uint8List
-import 'dart:nativewrappers/_internal/vm/lib/typed_data_patch.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,9 +52,9 @@ Future<String?> ReadUserData(Key) async {
 
 
 
-//
-// ShowBase64Image(Base64String){
-//   UriData? data= Uri.parse(Base64String).data;
-//   Uint8List myImageData = data?.contentAsBytes();
-//   return myImageData;
-// }
+
+ShowBase64Image(Base64String){
+  UriData? data= Uri.parse(Base64String).data;
+  Uint8List MyImage =   data!.contentAsBytes();
+  return MyImage;
+}

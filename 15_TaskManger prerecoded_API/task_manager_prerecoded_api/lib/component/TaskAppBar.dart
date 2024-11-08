@@ -15,7 +15,7 @@ AppBar TaskAppBar(){
                         backgroundColor: Colors.transparent,
                         radius: 24,
                         child: ClipOval(
-                            child: Image.memory(showBase64Image("Base64String")),
+                            child: Image.memory(ShowBase64Image("Base64String")),
                         ),
                     )
                 ],
