@@ -70,7 +70,17 @@ TextStyle Head7Text(textColor){
     color: textColor,
     fontSize: 12,
     fontFamily: 'poppins',
-    fontWeight: FontWeight.w200,
+    fontWeight: FontWeight.w400,
+  );
+}
+
+
+TextStyle Head9Text(textColor){
+  return TextStyle(
+    color: textColor,
+    fontSize: 14,
+    fontFamily: 'poppins',
+    fontWeight: FontWeight.w400,
   );
 }
 
