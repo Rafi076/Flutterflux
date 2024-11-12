@@ -18,6 +18,8 @@ class homeScreen extends StatefulWidget {
 class _homeScreenState extends State<homeScreen> {
 
   int TabIndex = 0;
+  Map<String, String> ProfileData = {"email":"", "firstName":"","lastName":""};
+
 
   onItemTapped(int index){
     setState(() {
