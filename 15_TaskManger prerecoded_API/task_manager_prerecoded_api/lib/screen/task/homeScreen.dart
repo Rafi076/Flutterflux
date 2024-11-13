@@ -18,7 +18,7 @@ class homeScreen extends StatefulWidget {
 class _homeScreenState extends State<homeScreen> {
 
   int TabIndex=0;
-  Map<String,String> ProfileData={"email":"","firstName":"","lastName":"","photo":DefaultProfilePic};
+  Map<String,String> ProfileData={"email":"c","firstName":"e","lastName":"r","photo":DefaultProfilePic};
 
   onItemTapped(int index){
     setState(() {
@@ -45,7 +45,9 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   void initState() {
-    //ReadAppBarData();
+    ReadAppBarData();
+
+
     super.initState();
   }
 

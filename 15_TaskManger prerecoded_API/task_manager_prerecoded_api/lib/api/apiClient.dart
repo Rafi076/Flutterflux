@@ -29,7 +29,7 @@ Future<bool> LoginRequest(FormValues) async{
     if (resultCode == 200 && resultBody['status'] == "success") {
       SuccessToast("Request Success");
 
-      await writeUserData(resultBody);
+      await WriteUserData(resultBody);
 
       return true;
     } else {
@@ -87,7 +87,7 @@ Future<bool> VerifyEmailRequest(Email) async{
 
     if(resultCode==200 && resultBody['status']=="success"){
 
-      await WriteEmailVerification(Email);
+      await writeEmailVerification(Email);
 
       SuccessToast("Request Success");
       return true;
