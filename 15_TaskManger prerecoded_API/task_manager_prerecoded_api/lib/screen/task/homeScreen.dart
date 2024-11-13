@@ -10,24 +10,21 @@ import '../../component/progressTaskList.dart';
 import '../../utility/utility.dart';
 
 class homeScreen extends StatefulWidget {
-  const homeScreen({super.key});
-
+  const homeScreen({Key? key}) : super(key: key);
   @override
   State<homeScreen> createState() => _homeScreenState();
 }
 
 class _homeScreenState extends State<homeScreen> {
 
-  int TabIndex = 0;
-  Map<String, String> ProfileData = {"email":"", "firstName":"","lastName":"","photo":DefaultProfilePic};
-
+  int TabIndex=0;
+  Map<String,String> ProfileData={"email":"","firstName":"","lastName":"","photo":DefaultProfilePic};
 
   onItemTapped(int index){
     setState(() {
-      TabIndex = index;
+      TabIndex=index;
     });
   }
-
 
 
   final widgetOptions = [
@@ -36,31 +33,28 @@ class _homeScreenState extends State<homeScreen> {
     completedTaskList(),
     cancelTasklist(),
   ];
-
-  ReadAppBarData()  async {
-    String? email = await ReadUserData('email') ?? '';
-    String? firstName = await ReadUserData('firstName') ?? '';
-    String? lastName = await ReadUserData('lastName') ?? '';
-    String? photo = await ReadUserData('photo') ?? DefaultProfilePic;
-
+  ReadAppBarData() async {
+    String? email= await ReadUserData('email');
+    String? firstName= await ReadUserData('firstName');
+    String? lastName= await ReadUserData('lastName');
+    String? photo= await ReadUserData('photo');
     setState(() {
-      ProfileData = {"email":'$email', "firstName":'$firstName',"lastName":'$lastName',"photo":'$photo'};
+      ProfileData={"email":'$email',"firstName":'$firstName',"lastName":'$lastName',"photo":'$photo'};
     });
-}
-
-@override
-  void initState() {
-     ReadAppBarData();
-    super.initState();
   }
 
+  @override
+  void initState() {
+    //ReadAppBarData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TaskAppBar(context,ProfileData),
       body: widgetOptions.elementAt(TabIndex),
-      bottomNavigationBar:  appBottomNav(TabIndex, onItemTapped),
+      bottomNavigationBar: appBottomNav(TabIndex,onItemTapped),
     );
   }
 }
