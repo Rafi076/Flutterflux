@@ -31,7 +31,9 @@ AppBar TaskAppBar(context,ProfileData){
         ),
         
         actions: [
-            IconButton(onPressed: (){},
+            IconButton(onPressed: (){
+                Navigator.pushNamed(context, "/taskCreate");
+            },
                 icon: Icon(Icons.add, color: Colors.white70,),),
 
             IconButton(
