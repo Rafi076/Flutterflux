@@ -14,8 +14,13 @@ ListView TaskList(TaskItems){
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(TaskItems['title'], style: Head6Text(colorDark),),
-                Text(TaskItems['description'], style: Head7Text(colorLightGray),)
+
+                Text(TaskItems[index]['title'],style: Head6Text(colorDarkBlue),),
+                SizedBox(height: 5),
+                Text(TaskItems[index]['description'],style: Head7Text(colorLightGray),),
+                SizedBox(height: 5),
+                Text(TaskItems[index]['createdDate'],style: Head9Text(colorDarkBlue),),
+                SizedBox(height: 10),
 
               ],
             )

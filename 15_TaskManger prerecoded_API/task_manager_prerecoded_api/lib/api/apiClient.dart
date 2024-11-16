@@ -180,6 +180,7 @@ Future<List> TaskListRequest(Status) async {
       "token": '$token'
     };
 
+
     var response = await http.get(URL, headers: requestHeaderWithToken);
     var resultCode = response.statusCode;
 
@@ -200,29 +201,46 @@ Future<List> TaskListRequest(Status) async {
 }
 
 
+// TaskCreateRequest
 
 
-//
-// Future<bool> TaskCreateRequest(FormValues) async {
-//
-//   var URL=Uri.parse("${BaseURL}/createTask");
-//   String? token= await ReadUserData("token");
-//   var RequestHeaderWithToken={"Content-Type":"application/json","token":'$token'};
-//
-//   var PostBody=json.encode(FormValues);
-//
-//   var response= await http.post(URL,headers:RequestHeaderWithToken,body: PostBody);
-//   var ResultCode=response.statusCode;
-//   var ResultBody=json.decode(response.body);
-//   if(ResultCode==200 && ResultBody['status']=="success"){
-//     SuccessToast("Request Success");
-//     return true;
-//   }
-//   else{
-//     ErrorToast("Request fail ! try again");
-//     return false;
-//   }
-// }
+Future<bool> TaskCreateRequest(FormValues) async {
+  try {
+    var URL = Uri.parse("${BaseURL}/createTask");
+    String? token= await ReadUserData("token");
+
+    // Check if token is nullReadUserData
+    if (token == null) {
+      ErrorToast("Token not found. Please log in again.");
+      return false;
+    }
+
+    var requestHeaderWithToken = {
+      "Content-Type": "application/json",
+      "token": '$token'
+    };
+    var PostBody = json.encode(FormValues);
+
+    var response = await http.post(URL, headers: requestHeaderWithToken, body: PostBody );
+    var resultCode = response.statusCode;
+
+    // Decode response body and handle JSON decoding errors
+    var resultBody = json.decode(response.body);
+
+    if (resultCode == 200 && resultBody['status'] == "success") {
+      SuccessToast("Request Success");
+      return true;
+    } else {
+      ErrorToast(resultBody['message'] ?? "Request failed! Try again.");
+      return false;
+    }
+  } catch (e) {
+    ErrorToast("An error occurred: $e");
+    return false;
+  }
+}
+
+
 //
 //
 // Future<bool> TaskDeleteRequest(id) async {
