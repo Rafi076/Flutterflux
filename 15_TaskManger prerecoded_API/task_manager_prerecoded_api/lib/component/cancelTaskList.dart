@@ -14,6 +14,8 @@ class cancelTasklist extends StatefulWidget {
 
 class _cancelTasklistState extends State<cancelTasklist> {
   List TaskItems = [];
+  List DeleteItem = [];
+  List StatusChange = [];
   bool Loading = true;
 
   @override
@@ -37,6 +39,9 @@ class _cancelTasklistState extends State<cancelTasklist> {
     }
   }
 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Loading
@@ -45,7 +50,7 @@ class _cancelTasklistState extends State<cancelTasklist> {
             onRefresh: () async {
               await callDtata();
             },
-        child: TaskList(TaskItems)
+        child: TaskList(TaskItems,DeleteItem,StatusChange)
           );
   }
 }

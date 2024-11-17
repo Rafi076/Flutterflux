@@ -135,7 +135,16 @@ SvgPicture ScreenBackground(context){
     );
   }
 
-  TextStyle ButtonTextStyle(){
+ButtonStyle AppStatusButtonStyle(btnColor){
+  return ElevatedButton.styleFrom(
+    elevation: 1,
+    padding: EdgeInsets.zero,
+    backgroundColor: btnColor,
+  );
+}
+
+
+TextStyle ButtonTextStyle(){
     return TextStyle(
       fontSize: 14,
       fontFamily: 'poppins',
@@ -155,8 +164,21 @@ SvgPicture ScreenBackground(context){
     );
   }
 
+Container StatusChild(statusText,statusColor){
+  return  Container(
+    alignment: Alignment.center,
+    child:Text(statusText,style: TextStyle(color: colorWhite,fontSize: 10,fontWeight: FontWeight.w400)),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: statusColor,
+    ),
+    height: 20,
+    width: 60,
+  );
+}
 
-  // dependeci :   fluttertoast: ^8.2.8
+
+// dependeci :   fluttertoast: ^8.2.8
   void SuccessToast(msg){
     Fluttertoast.showToast(
         msg: msg,

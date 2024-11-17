@@ -14,6 +14,8 @@ class progresstaskList extends StatefulWidget {
 
 class _progresstaskListState extends State<progresstaskList> {
   List TaskItems = [];
+  List DeleteItem = [];
+  List StatusChange = [];
   bool Loading = true;
 
   @override
@@ -45,7 +47,7 @@ class _progresstaskListState extends State<progresstaskList> {
             onRefresh: () async {
               await callDtata();
             },
-          child: TaskList(TaskItems)
+        child: TaskList(TaskItems,DeleteItem,StatusChange)
           );
   }
 }

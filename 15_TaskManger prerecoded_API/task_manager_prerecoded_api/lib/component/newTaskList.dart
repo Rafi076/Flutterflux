@@ -14,6 +14,8 @@ class newTaskList extends StatefulWidget {
 
 class _newTaskListState extends State<newTaskList> {
   List TaskItems = [];
+  List DeleteItem = [];
+  List StatusChange = [];
   bool Loading = true;
 
   @override
@@ -45,7 +47,7 @@ class _newTaskListState extends State<newTaskList> {
             onRefresh: () async {
               await callDtata();
             },
-              child: TaskList(TaskItems)
+        child: TaskList(TaskItems,DeleteItem,StatusChange)
           );
   }
 }
