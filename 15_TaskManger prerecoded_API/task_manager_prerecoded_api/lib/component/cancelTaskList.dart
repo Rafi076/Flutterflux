@@ -14,8 +14,13 @@ class cancelTasklist extends StatefulWidget {
 
 class _cancelTasklistState extends State<cancelTasklist> {
   List TaskItems = [];
-  List DeleteItem = [];
+
+
+  String Status="Canceled";
   List StatusChange = [];
+
+
+
   bool Loading = true;
 
   @override
@@ -39,7 +44,28 @@ class _cancelTasklistState extends State<cancelTasklist> {
     }
   }
 
-
+  DeleteItem(id) async{
+    showDialog(
+        context: context,
+        builder: (BuildContext context){
+          return AlertDialog(
+            title: Text("Delete !"),
+            content: Text("Onece delete, you can't get it back"),
+            actions: [
+              OutlinedButton(onPressed: () async {
+                Navigator.pop(context);
+                setState(() {Loading=true;});
+                await TaskDeleteRequest(id);
+                await callDtata();
+              }, child: Text('Yes')),
+              OutlinedButton(onPressed: (){
+                Navigator.pop(context);
+              }, child: Text('No')),
+            ],
+          );
+        }
+    );
+  }
 
 
   @override
