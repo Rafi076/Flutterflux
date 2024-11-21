@@ -76,6 +76,8 @@ class _newTaskListState extends State<newTaskList> {
                   child:Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
+
+
                       RadioListTile(title: Text("New"), value: "New", groupValue: Status,
                         onChanged: (value){
                           setState(() {
@@ -104,6 +106,7 @@ class _newTaskListState extends State<newTaskList> {
                           });
                         },
                       ),
+                      
                       Container(child: ElevatedButton(
                         style: AppButtonStyle(),
                         child: SuccessButtonChild('Confirm'),

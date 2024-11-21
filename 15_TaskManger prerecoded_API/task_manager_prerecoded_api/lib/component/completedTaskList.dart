@@ -71,7 +71,48 @@ class _completedTaskListState extends State<completedTaskList> {
                   padding: EdgeInsets.all(30),
                   height: 360,
                   child:Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
 
+
+                      RadioListTile(title: Text("New"), value: "New", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(title: Text("Progress"), value: "Progress", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(title: Text("Completed"), value: "Completed", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
+                        },
+                      ),
+                      RadioListTile(title: Text("Canceled"), value: "Canceled", groupValue: Status,
+                        onChanged: (value){
+                          setState(() {
+                            Status = value.toString();
+                          });
+                        },
+                      ),
+
+                      Container(child: ElevatedButton(
+                        style: AppButtonStyle(),
+                        child: SuccessButtonChild('Confirm'),
+                        onPressed: (){
+                          Navigator.pop(context);
+                          //UpdateStatus(id);
+                        },
+                      ),)
+                    ],
                   ),
                 );
               }
