@@ -15,7 +15,6 @@ class completedTaskList extends StatefulWidget {
 class _completedTaskListState extends State<completedTaskList> {
   List TaskItems = [];
   String Status="Completed";
-  List StatusChange = [];
   bool Loading = true;
 
   @override
@@ -57,6 +56,25 @@ class _completedTaskListState extends State<completedTaskList> {
                 Navigator.pop(context);
               }, child: Text('No')),
             ],
+          );
+        }
+    );
+  }
+
+
+  StatusChange(id) async{
+    showModalBottomSheet(context: context,
+        builder: (context){
+          return StatefulBuilder(
+              builder: (BuildContext context,StateSetter setState){
+                return Container(
+                  padding: EdgeInsets.all(30),
+                  height: 360,
+                  child:Column(
+
+                  ),
+                );
+              }
           );
         }
     );

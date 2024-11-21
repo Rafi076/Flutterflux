@@ -16,7 +16,6 @@ class _progresstaskListState extends State<progresstaskList> {
   List TaskItems = [];
 
   String Status="Progress";
-  List StatusChange = [];
 
   bool Loading = true;
 
@@ -60,6 +59,25 @@ class _progresstaskListState extends State<progresstaskList> {
                 Navigator.pop(context);
               }, child: Text('No')),
             ],
+          );
+        }
+    );
+  }
+
+
+  StatusChange(id) async{
+    showModalBottomSheet(context: context,
+        builder: (context){
+          return StatefulBuilder(
+              builder: (BuildContext context,StateSetter setState){
+                return Container(
+                  padding: EdgeInsets.all(30),
+                  height: 360,
+                  child:Column(
+
+                  ),
+                );
+              }
           );
         }
     );

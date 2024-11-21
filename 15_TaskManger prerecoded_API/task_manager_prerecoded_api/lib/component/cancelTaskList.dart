@@ -17,7 +17,6 @@ class _cancelTasklistState extends State<cancelTasklist> {
 
 
   String Status="Canceled";
-  List StatusChange = [];
 
 
 
@@ -67,6 +66,24 @@ class _cancelTasklistState extends State<cancelTasklist> {
     );
   }
 
+
+  StatusChange(id) async{
+    showModalBottomSheet(context: context,
+        builder: (context){
+          return StatefulBuilder(
+              builder: (BuildContext context,StateSetter setState){
+                return Container(
+                  padding: EdgeInsets.all(30),
+                  height: 360,
+                  child:Column(
+
+                  ),
+                );
+              }
+          );
+        }
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
