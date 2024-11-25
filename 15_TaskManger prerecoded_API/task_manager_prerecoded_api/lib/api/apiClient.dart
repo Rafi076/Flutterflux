@@ -277,6 +277,45 @@ Future<bool> TaskDeleteRequest(String id) async {
   }
 }
 
+
+// TaskUpdateRequest
+Future<bool> TaskUpdateRequest(String id, String status) async {
+  try {
+    var URL = Uri.parse("${BaseURL}/updateTaskStatus/${id}/${status}");
+    String? token = await ReadUserData("token");
+
+    // Check if token is null
+    if (token == null) {
+      ErrorToast("Token not found. Please log in again.");
+      return false;
+    }
+
+    var requestHeaderWithToken = {
+      "Content-Type": "application/json",
+      "token": '$token'
+    };
+
+    var response = await http.get(URL, headers: requestHeaderWithToken);
+    var resultCode = response.statusCode;
+
+    // Decode response body and handle JSON decoding errors
+    var resultBody = json.decode(response.body);
+
+    if (resultCode == 200 && resultBody['status'] == "success") {
+      SuccessToast("Request Success");
+      return true;
+    } else {
+      ErrorToast(resultBody['message'] ?? "Request failed! Try again.");
+      return false;
+    }
+  } catch (e) {
+    ErrorToast("An error occurred: $e");
+    return false;
+  }
+}
+
+
+
 //
 //
 // Future<bool> TaskUpdateRequest(id,status) async {
