@@ -5,7 +5,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
   const colorRed = Colors.red;
   const colorDark = Colors.black;
-  const colorGreen = Colors.green;
+  const colorGreen = Colors.blueGrey;
   const colorBlue = Colors.blue;
   const colorOrange = Colors.orange;
   const colorWhite = Colors.white;
