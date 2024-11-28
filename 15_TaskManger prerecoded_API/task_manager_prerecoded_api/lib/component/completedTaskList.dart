@@ -38,6 +38,15 @@ class _completedTaskListState extends State<completedTaskList> {
     }
   }
 
+  UpdateStatus(id) async {
+    setState(() {Loading=true;});
+    await TaskUpdateRequest(id,Status);
+    await callDtata();
+    setState(() {
+      Status = "Completed";
+    });
+  }
+
   DeleteItem(id) async{
     showDialog(
         context: context,
@@ -109,12 +118,7 @@ class _completedTaskListState extends State<completedTaskList> {
                         child: SuccessButtonChild('Confirm'),
                         onPressed: (){
                           Navigator.pop(context);
-                          setState(() {Loading=true;});
-                          TaskUpdateRequest(id,Status);
-                          callDtata();
-                          setState(() {
-                            Status = "Completed";
-                          });
+                          UpdateStatus(id);
                         },
                       ),)
                     ],

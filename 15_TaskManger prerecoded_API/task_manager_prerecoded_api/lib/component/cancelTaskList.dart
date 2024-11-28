@@ -41,6 +41,15 @@ class _cancelTasklistState extends State<cancelTasklist> {
     }
   }
 
+  UpdateStatus(id) async {
+    setState(() {Loading=true;});
+    await TaskUpdateRequest(id,Status);
+    await callDtata();
+    setState(() {
+      Status = "cancel";
+    });
+  }
+
   DeleteItem(id) async{
     showDialog(
         context: context,
@@ -112,12 +121,7 @@ class _cancelTasklistState extends State<cancelTasklist> {
                         child: SuccessButtonChild('Confirm'),
                         onPressed: (){
                           Navigator.pop(context);
-                          setState(() {Loading=true;});
-                          TaskUpdateRequest(id,Status);
-                          callDtata();
-                          setState(() {
-                            Status = "Canceled";
-                          });
+                          UpdateStatus(id);
                         },
                       ),)
                     ],

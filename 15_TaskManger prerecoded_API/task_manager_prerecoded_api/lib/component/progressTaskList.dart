@@ -39,6 +39,14 @@ class _progresstaskListState extends State<progresstaskList> {
     }
   }
 
+  UpdateStatus(id) async {
+    setState(() {Loading=true;});
+    await TaskUpdateRequest(id,Status);
+    await callDtata();
+    setState(() {
+      Status = "Progress";
+    });
+  }
 
   DeleteItem(id) async{
     showDialog(
@@ -111,12 +119,7 @@ class _progresstaskListState extends State<progresstaskList> {
                         child: SuccessButtonChild('Confirm'),
                         onPressed: (){
                           Navigator.pop(context);
-                          setState(() {Loading=true;});
-                          TaskUpdateRequest(id,Status);
-                          callDtata();
-                          setState(() {
-                            Status = "Progress";
-                          });
+                          UpdateStatus(id);
                         },
                       ),)
                     ],

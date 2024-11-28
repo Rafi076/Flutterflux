@@ -38,9 +38,14 @@ class _newTaskListState extends State<newTaskList> {
     }
   }
 
-
-
-
+  UpdateStatus(id) async {
+    setState(() {Loading=true;});
+    await TaskUpdateRequest(id,Status);
+    await callDtata();
+    setState(() {
+      Status = "New";
+    });
+  }
 
   DeleteItem(id) async{
     showDialog(
@@ -112,12 +117,7 @@ class _newTaskListState extends State<newTaskList> {
                         child: SuccessButtonChild('Confirm'),
                         onPressed: (){
                           Navigator.pop(context);
-                          setState(() {Loading=true;});
-                          TaskUpdateRequest(id,Status);
-                          callDtata();
-                          setState(() {
-                            Status = "New";
-                          });
+                          UpdateStatus(id);
                         },
                       ),)
                     ],
